@@ -1,8 +1,23 @@
+'use client';
+
 import React from "react";
+import Image from "next/image";
+import { useInView } from "react-intersection-observer";
 
 const VisualizeSpendingCard = () => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.3,
+  });
+
   return (
-    <div className="bg-[#F7F7F7] rounded-[30px] p-8 flex flex-col items-start text-left shadow-sm w-full h-auto min-h-[400px] justify-between">
+    <div
+      ref={ref}
+      className={`bg-[#F7F7F7] rounded-[30px] p-8 flex flex-col items-start text-left shadow-sm w-full h-full justify-between
+        transition-all duration-700 ease-out transform
+        ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}
+        hover:scale-[1.03] hover:shadow-lg`}
+    >
       <p className="text-sm font-medium text-[#7B7B7B] mb-4">
         See your money clearly
       </p>
@@ -18,63 +33,13 @@ const VisualizeSpendingCard = () => {
               from last week
             </p>
           </div>
-
-          {/* Bar Chart with exact dimensions */}
-          <div className="w-full flex items-end  justify-between h-[112px] mb-2">
-            {/* Sunday */}
-            <div
-              className="w-[36px] bg-[#D3D3D3] rounded-[12.95px]"
-              style={{ height: "46.6px" }}
-            ></div>
-
-            {/* Monday */}
-            <div
-              className="w-[36px] bg-[#D3D3D3] rounded-[12.95px]"
-              style={{ height: "82.85px" }}
-            ></div>
-
-            {/* Tuesday */}
-            <div
-              className="w-[36px] bg-[#D3D3D3] rounded-[12.95px]"
-              style={{ height: "91.91px" }}
-            ></div>
-
-            {/* Wednesday */}
-            <div
-              className="w-[36px] bg-[#D3D3D3] rounded-[12.95px]"
-              style={{ height: "73.79px" }}
-            ></div>
-
-            {/* Thursday */}
-            <div
-              className="w-[36px] rounded-[12.95px]"
-              style={{
-                height: "112.62px",
-                background: "linear-gradient(180deg, #0066DA 0%, #00AC47 100%)",
-              }}
-            ></div>
-
-            {/* Friday */}
-            <div
-              className="w-[36px] bg-[#D3D3D3] rounded-[12.95px]"
-              style={{ height: "69.9px" }}
-            ></div>
-
-            {/* Saturday */}
-            <div
-              className="w-[36px] bg-[#D3D3D3] rounded-[12.95px]"
-              style={{ height: "46.6px" }}
-            ></div>
-          </div>
-          {/* Day labels */}
-          <div className="flex justify-between w-full text-xs text-gray-500 mt-2">
-            <span className="w-[36px] text-center">S</span>
-            <span className="w-[36px] text-center">M</span>
-            <span className="w-[36px] text-center">T</span>
-            <span className="w-[36px] text-center">W</span>
-            <span className="w-[36px] text-center">T</span>
-            <span className="w-[36px] text-center">F</span>
-            <span className="w-[36px] text-center">S</span>
+          <div className="w-full h-40 relative flex-grow">
+            <Image
+              src="/assets/images/Chart.svg"
+              alt="Spending Chart"
+              fill
+              className="object-contain"
+            />
           </div>
         </div>
       </div>

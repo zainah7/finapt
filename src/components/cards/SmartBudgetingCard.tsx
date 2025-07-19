@@ -1,10 +1,25 @@
+'use client';
+
 import Image from "next/image";
 import React from "react";
+import { useInView } from "react-intersection-observer";
 import Card from "../Card";
 
 const SmartBudgetingCard = () => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.3,
+  });
+
   return (
-    <Card className="bg-[#0066DA] rounded-3xl p-6 md:p-8 flex flex-col justify-between items-start text-white overflow-hidden relative w-full h-[300px] sm:h-[350px] md:h-[500px]">
+    <Card
+      ref={ref}
+      className={`bg-[#0066DA] rounded-3xl p-6 md:p-8 flex flex-col justify-between items-start text-white overflow-hidden relative w-full h-[300px] sm:h-[350px] md:h-[500px]
+        transition-all duration-700 ease-out
+        ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}
+        hover:scale-[1.03] hover:shadow-lg
+      }`}
+    >
       {/* Decorative Stars */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0">
         <Image

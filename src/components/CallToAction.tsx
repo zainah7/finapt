@@ -1,10 +1,17 @@
+'use client';
+
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
+import { useInView } from 'react-intersection-observer';
 
 const CallToActionSection = () => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.3,
+  });
   return (
-    <section className="w-full py-12 px-4 md:px-16 flex flex-col items-center justify-center text-center">
+    <section ref={ref} className={`w-full py-12 px-4 md:px-16 flex flex-col items-center justify-center text-center transition-all duration-700 ease-out ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
       <div className="w-full  bg-white rounded-[30px] shadow-sm flex flex-col lg:flex-row items-center justify-between gap-10 px-6 md:px-16 py-14">
         {/* Left Content */}
         <div className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-6">

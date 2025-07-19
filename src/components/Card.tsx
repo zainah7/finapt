@@ -5,12 +5,14 @@ interface CardProps {
   className?: string;
 }
 
-const Card: React.FC<CardProps> = ({ children, className }) => {
+const Card = React.forwardRef<HTMLDivElement, CardProps>(({ children, className }, ref) => {
   return (
-    <div className={className}>
+    <div ref={ref} className={className}>
       {children}
     </div>
   );
-};
+});
+
+Card.displayName = 'Card';
 
 export default Card;

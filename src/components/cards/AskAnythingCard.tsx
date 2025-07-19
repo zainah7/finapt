@@ -1,10 +1,24 @@
+'use client';
+
 import Image from "next/image";
 import React from "react";
+import { useInView } from "react-intersection-observer";
 import Card from "../Card";
 
 const AskAnythingCard = () => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.3,
+  });
+
   return (
-    <Card className="bg-[#F7F7F7] rounded-3xl p-4 sm:p-6 md:p-8 flex flex-col items-start text-gray-900 relative w-full h-[350px] sm:h-[400px] md:h-[500px]">
+    <Card
+      ref={ref}
+      className={`bg-[#F7F7F7] rounded-3xl p-4 sm:p-6 md:p-8 flex flex-col items-start text-gray-900 relative w-full h-[350px] sm:h-[400px] md:h-[500px]
+        transition-all duration-700 ease-out
+        ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}
+        hover:scale-[1.03] hover:shadow-lg`}
+    >
       {/* Decorative Blob with Question Mark */}
       <div className="absolute -top-12 sm:-top-16 -left-10 sm:-left-14 z-0">
         <Image
