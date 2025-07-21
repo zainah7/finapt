@@ -30,23 +30,23 @@ export default function Navbar() {
 
       {/* Desktop menu */}
       <div className="hidden md:flex">
-        <Button asChild className="bg-[#0066DA] hover:bg-[#0080DA] rounded-3xl px-2 py-5">
-          <Link href="#" className="flex items-center">
-            Get started for free
-            <Image
-              src="/assets/icons/arrow-up-right.svg"
-              alt="Arrow Icon"
-              width={16}
-              height={16}
-            />
-          </Link>
-        </Button>
+        <Button asChild className="bg-[#0066DA] hover:bg-[#0080DA] rounded-full w-[200.51px] h-[51px] p-4 text-base shadow-lg">
+            <Link href="#" className="flex items-center">
+              Get started for free
+              <Image
+                src="/assets/icons/arrow-up-right.svg"
+                alt="Arrow Icon"
+                width={16}
+                height={16}
+              />
+            </Link>
+          </Button>
       </div>
 
       {/* Mobile menu */}
       {isMenuOpen && (
         <div className="md:hidden absolute top-full left-0 w-full bg-[#F7F7F7] shadow-md py-4 px-4 z-10">
-          <Button asChild className="bg-[#0066DA] hover:bg-[#0080DA] rounded-3xl px-4 py-2 w-full">
+          <Button asChild className="bg-[#0066DA] hover:bg-[#0080DA] rounded-full h-[51px] p-4 text-base shadow-lg w-full">
             <Link href="#" className="flex items-center justify-center">
               Get started for free
               <Image

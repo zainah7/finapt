@@ -1,7 +1,9 @@
+'use client';
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Pacifico } from "next/font/google";
+import AnimatedQrCode from "./AnimatedQrCode";
 
 const pacifico = Pacifico({
   weight: "400",
@@ -36,9 +38,11 @@ export default function Hero() {
               Automate your payments, track your expenses, and get AI-powered
               budgeting, personalized just for you.
             </p>
-            <Button
+          </div>
+
+          <Button
               asChild
-              className="bg-[#0066DA] hover:bg-[#0080DA] rounded-full px-3 py-5 text-base shadow-lg"
+              className="bg-[#0066DA] hover:bg-[#0080DA] rounded-full w-[200.51px] h-[51px] p-4 text-base shadow-lg"
             >
               <Link href="#" className="flex items-center gap-2">
                 Get started for free
@@ -50,19 +54,13 @@ export default function Hero() {
                 />
               </Link>
             </Button>
-          </div>
 
           <div className="mt-12">
             <h3 className="text-lg font-semibold text-[#000000] mb-2">
               Download our App
             </h3>
             <div className="mb-4">
-              <Image
-                src="/assets/images/qr-code.svg"
-                alt="QR Code"
-                width={170}
-                height={120}
-              />
+              <AnimatedQrCode />
             </div>
             <div className="flex items-center gap-5">
               <div className="flex items-center gap-3">
@@ -85,7 +83,9 @@ export default function Hero() {
         </div>
 
         {/* Right Column */}
-        <div className="w-full md:w-[543px] h-auto md:h-[685px] flex justify-center items-center">
+        <div
+          className="w-full md:w-[543px] h-auto md:h-[685px] flex justify-center items-center"
+        >
           <Image
             src="/assets/images/hero-image.svg"
             alt="Finapt App Screenshot"

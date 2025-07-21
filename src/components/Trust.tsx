@@ -1,5 +1,7 @@
+'use client';
 import Image from "next/image";
 import React from "react";
+import { motion } from "framer-motion";
 
 const TrustSection = () => {
   const features = [
@@ -28,7 +30,13 @@ const TrustSection = () => {
   return (
     <section className="relative w-full py-20 px-6 md:px-12 overflow-hidden">
       {/* Blue shape on the left */}
-      <div className="absolute top-1/4 left-0 z-0 -translate-x-1/4 -translate-y-1/4">
+      <motion.div
+        initial={{ opacity: 0, x: -100 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="absolute top-1/4 left-0 z-0 -translate-x-1/4 -translate-y-1/4"
+      >
         <Image
           src="/assets/images/decorative-shape-blue.svg"
           alt="Decorative Blue Shape"
@@ -36,10 +44,16 @@ const TrustSection = () => {
           height={250}
           className="w-[120px] h-[120px] md:w-[180px] md:h-[180px] lg:w-[250px] lg:h-[250px]"
         />
-      </div>
+      </motion.div>
 
       {/* Yellow shape on the right */}
-      <div className="absolute bottom-[-20px] right-[-20px] md:bottom-0 md:right-0 z-0 md:translate-x-1/4 md:-translate-y-1/2">
+      <motion.div
+        initial={{ opacity: 0, x: 100 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="absolute bottom-[-20px] right-[-20px] md:bottom-0 md:right-0 z-0 md:translate-x-1/4 md:-translate-y-1/2"
+      >
         <Image
           src="/assets/images/decorative-shape-yellow.svg"
           alt="Decorative Yellow Shape"
@@ -47,10 +61,16 @@ const TrustSection = () => {
           height={250}
           className="w-[120px] h-[120px] md:w-[180px] md:h-[180px] lg:w-[250px] lg:h-[250px]"
         />
-      </div>
+      </motion.div>
 
       {/* Main Content */}
-      <div className="relative z-10 max-w-5xl mx-auto text-center">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.5 }}
+        className="relative z-10 max-w-5xl mx-auto text-center"
+      >
         {/* Icon */}
         <div className="flex justify-center mb-2">
           <Image
@@ -72,17 +92,31 @@ const TrustSection = () => {
           designed to keep your money safe while keeping you in control.
         </p>
         {/* Features */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-24 gap-y-20 max-w-3xl mx-auto">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={{
+            visible: { transition: { staggerChildren: 0.1 } },
+          }}
+          className="grid grid-cols-1 sm:grid-cols-2 gap-x-24 gap-y-20 max-w-3xl mx-auto"
+        >
           {features.map((feature, index) => (
-            <div key={index} className="text-center">
+            <motion.div
+              key={index}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              className="text-center"
+            >
               <h3 className="text-xl font-semibold text-gray-900 mb-2">
                 {feature.title}
               </h3>
               <p className="text-[#7B7B7B]">{feature.description}</p>
-            </div>
+            </motion.div>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };
